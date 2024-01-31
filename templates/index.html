@@ -27,10 +27,10 @@
         <!-- Fila para agregar nueva tarea -->
         <div class="row mb-3">
             <div class="col-9">
-                <input type="text" class="form-control" id="newTask" placeholder="Nueva tarea">
+                <input type="text" class="form-control" id="tituloTarea" placeholder="Nueva tarea">
             </div>
             <div class="col-3">
-                <button class="btn btn-success w-100">+</button>
+                <button class="btn btn-success w-100" id="btnAgregar">+</button>
             </div>
         </div>
 
@@ -55,7 +55,37 @@
     </div>
 
     <!-- Enlazando Bootstrap (JS) desde la carpeta static -->
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>git commit -m "Guardando cambios antes de resolver el problema del índice"
+
+    <script>
+        window.onload = () => {
+            
+            document.querySelector('#btnAgregar').addEventListener('click', () => {
+                let tituloTarea = document.querySelector('#tituloTarea').value;
+                if (tituloTarea.trim() === '') {
+                    alert('La tarea no puede estar vacía');
+                    return;
+                }
+                
+                /*let taskList = document.querySelector('#taskList');
+                let taskCount = document.querySelector('#taskCount');
+                let newTaskItem = document.createElement('li');
+                newTaskItem.className = 'list-group-item';
+                newTaskItem.innerHTML = `
+                    <div class="d-flex justify-content-between">
+                        <span>${newTask}</span>
+                        <div>
+                            <button class="btn btn-success btn-sm">Finalizar</button>
+                            <button class="btn btn-danger btn-sm">Eliminar</button>
+                        </div>
+                    </div>
+                `;
+                taskList.appendChild(newTaskItem);
+                taskCount.textContent = parseInt(taskCount.textContent) + 1;
+                document.querySelector('#newTask').value = '';*/
+            });
+        }
+    </script>
 </body>
 
 </html>
