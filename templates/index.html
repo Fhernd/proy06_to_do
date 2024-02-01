@@ -55,7 +55,7 @@
     </div>
 
     <!-- Enlazando Bootstrap (JS) desde la carpeta static -->
-    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>git commit -m "Guardando cambios antes de resolver el problema del índice"
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
         window.onload = () => {
@@ -66,23 +66,23 @@
                     alert('La tarea no puede estar vacía');
                     return;
                 }
-                
-                /*let taskList = document.querySelector('#taskList');
-                let taskCount = document.querySelector('#taskCount');
-                let newTaskItem = document.createElement('li');
-                newTaskItem.className = 'list-group-item';
-                newTaskItem.innerHTML = `
+
+                const listaTareas = document.querySelector('#taskList');
+                const contadorTareas = document.querySelector('#taskCount');
+                const nuevaTareaItem = document.createElement('li');
+                nuevaTareaItem.className = 'list-group-item';
+                nuevaTareaItem.innerHTML = `
                     <div class="d-flex justify-content-between">
-                        <span>${newTask}</span>
+                        <span>${tituloTarea}</span>
                         <div>
                             <button class="btn btn-success btn-sm">Finalizar</button>
                             <button class="btn btn-danger btn-sm">Eliminar</button>
                         </div>
                     </div>
                 `;
-                taskList.appendChild(newTaskItem);
-                taskCount.textContent = parseInt(taskCount.textContent) + 1;
-                document.querySelector('#newTask').value = '';*/
+                listaTareas.appendChild(nuevaTareaItem);
+                contadorTareas.textContent = parseInt(taskCount.textContent) + 1;
+                document.querySelector('#tituloTarea').value = '';
             });
         }
     </script>
