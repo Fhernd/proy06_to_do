@@ -12,5 +12,4 @@ def index():
 @app.route('/guardar', methods=['POST'])
 def guardar():
     datos = request.json
-    print(datos)
-    return {'mensaje': 'Datos recibidos', 'datos': datos}
+    return {'mensaje': 'Tarea almacenada correctamente'}
