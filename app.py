@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 
+from db.crud_todo import crear_tarea
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '@#@$MYSUPERSECRETKEY@#@$'
@@ -12,4 +14,10 @@ def index():
 @app.route('/guardar', methods=['POST'])
 def guardar():
     datos = request.json
-    return {'mensaje': 'Tarea almacenada correctamente'}
+    
+    resultado = crear_tarea(datos)
+    
+    if resultado:
+        return {'mensaje': 'Tarea almacenada correctamente'}
+    else:
+        return {'mensaje': 'Error al almacenar la tarea'}
