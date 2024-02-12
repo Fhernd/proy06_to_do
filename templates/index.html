@@ -58,6 +58,13 @@
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
+        class ToDo {
+            constructor(titulo, terminada){
+                this.titulo = titulo;
+                this.terminada = terminada;
+            }
+        }
+
         window.onload = () => {
             
             document.querySelector('#btnAgregar').addEventListener('click', () => {
@@ -83,7 +90,17 @@
                 listaTareas.appendChild(nuevaTareaItem);
                 contadorTareas.textContent = parseInt(taskCount.textContent) + 1;
                 document.querySelector('#tituloTarea').value = '';
+                
+                const tarea = new ToDo(tituloTarea, false);
+
+                guardarTarea(tarea);
             });
+        }
+
+        function guardarTarea(tarea) {
+            let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
+            tareas.push(tarea);
+            localStorage.setItem('tareas', JSON.stringify(tareas));
         }
     </script>
 </body>
