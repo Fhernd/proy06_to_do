@@ -10,21 +10,20 @@ def crear_tarea(tarea):
     - tarea: str -- Descripción de la tarea
     """
     try:
-        print('antes de crear conexion')
         conexion = crear_conexion()
-        print('después de crear conexion')
         cursor = conexion.cursor()
         
+        tarea_terminada = 1 if tarea['terminada'] else 0
         fecha_tarea = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         fecha_modificacion = fecha_tarea
-        print(fecha_tarea, fecha_modificacion)
         
+        sql = 'INSERT INTO todo (Titulo, FechaTarea, TareaTerminada, FechaModificacion) VALUES (?, ?, ?, ?)'
         
-        print('antes de execute')
-        cursor.execute('INSERT INTO todo (Titulo, FechaTarea, TareaTerminada, FechaModificacion) VALUES (?, ?, ?, ?)', (tarea['titulo'], fecha_tarea, tarea['TareaTerminada'], fecha_modificacion))
-        print('antes del commit')
+        datos = (tarea['titulo'], fecha_tarea, tarea_terminada, fecha_modificacion)
+        
+        cursor.execute(sql, datos)
+        
         conexion.commit()
-        print('después del commit')
         conexion.close()
         
         return True
