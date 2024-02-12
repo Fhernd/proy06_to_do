@@ -1,4 +1,4 @@
-from conexion import crear_conexion
+from db.conexion import crear_conexion
 
 
 def crear_tarea(tarea):
