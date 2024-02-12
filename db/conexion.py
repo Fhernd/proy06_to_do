@@ -7,5 +7,9 @@ def crear_conexion():
     
     - returns: sqlite3.Connection -- Conexión a la base de datos
     """
-    conexion = sqlite3.connect('db/todos.db')
-    return conexion
+    try:
+        conexion = sqlite3.connect('db/todos.db')
+        return conexion
+    except Exception as e:
+        print(e)
+        return None
