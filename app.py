@@ -13,9 +13,9 @@ def index():
 
 @app.route('/guardar', methods=['POST'])
 def guardar():
-    datos = request.json
+    todo = request.json
     
-    resultado = crear_tarea(datos)
+    resultado = crear_tarea(todo)
     
     if resultado:
         return {'mensaje': 'Tarea almacenada correctamente'}

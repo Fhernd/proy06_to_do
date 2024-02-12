@@ -101,6 +101,17 @@
             let tareas = JSON.parse(localStorage.getItem('tareas')) || [];
             tareas.push(tarea);
             localStorage.setItem('tareas', JSON.stringify(tareas));
+
+            // Enviar los datos a la ruta /guardar utilizando fetch:
+            fetch('/guardar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(tarea)
+            }).then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
         }
     </script>
 </body>
