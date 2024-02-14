@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from db.conexion import crear_conexion
+from models.todo import Todo
 
 
 def crear_tarea(tarea):
@@ -48,6 +49,10 @@ def obtener_tareas():
         cursor.execute(sql)
         
         tareas = cursor.fetchall()
+        
+        tareas = [{'ID': tarea[0], 'Titulo': tarea[1], 'FechaTarea': tarea[2], 'TareaTerminada': tarea[3], 'FechaModificacion': tarea[4]} for tarea in tareas]
+        
+        tareas = [Todo(tarea['ID'], tarea['Titulo'], tarea['FechaTarea'], tarea['TareaTerminada'], tarea['FechaModificacion']) for tarea in tareas]
         
         conexion.close()
         
