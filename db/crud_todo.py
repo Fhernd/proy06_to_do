@@ -30,3 +30,28 @@ def crear_tarea(tarea):
     except Exception as e:
         print(e)
         return False
+
+
+# Obtiene todas las tareas de la base de datos:
+def obtener_tareas():
+    """
+    Obtiene todas las tareas de la base de datos
+
+    - returns: list -- Lista de tareas
+    """
+    try:
+        conexion = crear_conexion()
+        cursor = conexion.cursor()
+        
+        sql = 'SELECT * FROM todo'
+        
+        cursor.execute(sql)
+        
+        tareas = cursor.fetchall()
+        
+        conexion.close()
+        
+        return tareas
+    except Exception as e:
+        print(e)
+        return None
