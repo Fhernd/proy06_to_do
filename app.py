@@ -23,7 +23,7 @@ def guardar():
         return {'mensaje': 'Error al almacenar la tarea'}
 
 
-@app.route('/todas', methods=['GET'])
+@app.route('/tareas', methods=['GET'])
 def todas():
     tareas = obtener_tareas()
     return {'tareas': [tarea.__dict__ for tarea in tareas]}

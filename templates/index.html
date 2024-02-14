@@ -66,6 +66,8 @@
         }
 
         window.onload = () => {
+
+            cargarTareas();
             
             document.querySelector('#btnAgregar').addEventListener('click', () => {
                 let tituloTarea = document.querySelector('#tituloTarea').value;
@@ -95,6 +97,32 @@
 
                 guardarTarea(tarea);
             });
+        }
+
+        function cargarTareas() {
+            // Utilizar fetch para obtener las tareas desde la ruta /tareas:
+            fetch('/tareas')
+            .then(response => response.json())
+            .then(data => {
+                data = data.tareas;
+                const listaTareas = document.querySelector('#taskList');
+                const contadorTareas = document.querySelector('#taskCount');
+                contadorTareas.textContent = data.length;
+                data.forEach(tarea => {
+                    const nuevaTareaItem = document.createElement('li');
+                    nuevaTareaItem.className = 'list-group-item';
+                    nuevaTareaItem.innerHTML = `
+                        <div class="d-flex justify-content-between">
+                            <span>${tarea.Titulo}</span>
+                            <div>
+                                <button class="btn btn-success btn-sm">Finalizar</button>
+                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                            </div>
+                        </div>
+                    `;
+                    listaTareas.appendChild(nuevaTareaItem);
+                });
+            })
         }
 
         function guardarTarea(tarea) {
