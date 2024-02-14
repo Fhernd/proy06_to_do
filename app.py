@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from db.crud_todo import crear_tarea
+from db.crud_todo import crear_tarea, obtener_tareas
 
 app = Flask(__name__)
 
@@ -23,4 +23,7 @@ def guardar():
         return {'mensaje': 'Error al almacenar la tarea'}
 
 
-
+@app.route('/todas', methods=['GET'])
+def todas():
+    tareas = obtener_tareas()
+    return {'tareas': [tarea.__dict__ for tarea in tareas]}
