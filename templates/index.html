@@ -157,7 +157,7 @@
         function eliminarTareaPorId(ID) {
             // Enviar los datos a la ruta /eliminar utilizando fetch:
             fetch(`/tareas/${ID}`, {
-                method: 'DELETE')
+                method: 'DELETE'
             }).then(response => response.json())
             .then(data => console.log(data))
             .catch(error => console.log(error));
