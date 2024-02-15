@@ -128,6 +128,8 @@
                     botonEliminar.addEventListener('click', () => {
                         // Elimina el elemento li del DOM
                         nuevaTareaItem.remove();
+
+                        eliminarTareaPorId(tarea.ID);
                     });
 
                     listaTareas.appendChild(nuevaTareaItem);
@@ -147,6 +149,15 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(tarea)
+            }).then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function eliminarTareaPorId(ID) {
+            // Enviar los datos a la ruta /eliminar utilizando fetch:
+            fetch(`/tareas/${ID}`, {
+                method: 'DELETE')
             }).then(response => response.json())
             .then(data => console.log(data))
             .catch(error => console.log(error));
