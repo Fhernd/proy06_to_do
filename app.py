@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from db.crud_todo import crear_tarea, obtener_tareas
+from db.crud_todo import crear_tarea, eliminar_tarea, obtener_tareas
 
 app = Flask(__name__)
 
@@ -27,3 +27,13 @@ def guardar():
 def todas():
     tareas = obtener_tareas()
     return {'tareas': [tarea.__dict__ for tarea in tareas]}
+
+
+@app.route('/tareas/<id>', methods=['DELETE'])
+def eliminar(id):
+    resultado = eliminar_tarea(id)
+    
+    if resultado:
+        return {'mensaje': 'Tarea eliminada correctamente'}
+    else:
+        return {'mensaje': 'Error al eliminar la tarea'}
