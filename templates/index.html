@@ -120,6 +120,16 @@
                             </div>
                         </div>
                     `;
+                    
+                    // Encuentra el botón Eliminar dentro de nuevaTareaItem
+                    const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
+                    
+                    // Añade un manejador de eventos click al botón Eliminar
+                    botonEliminar.addEventListener('click', () => {
+                        // Elimina el elemento li del DOM
+                        nuevaTareaItem.remove();
+                    });
+
                     listaTareas.appendChild(nuevaTareaItem);
                 });
             })
