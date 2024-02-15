@@ -33,7 +33,6 @@ def crear_tarea(tarea):
         return False
 
 
-# Obtiene todas las tareas de la base de datos:
 def obtener_tareas():
     """
     Obtiene todas las tareas de la base de datos
@@ -60,3 +59,28 @@ def obtener_tareas():
     except Exception as e:
         print(e)
         return None
+
+
+def eliminar_tarea(id_tarea):
+    """
+    Elimina una tarea de la base de datos dado su ID
+
+    - id_tarea: int -- ID de la tarea a eliminar
+    
+    Returns: bool -- True si la tarea fue eliminada, False en caso contrario
+    """
+    try:
+        conexion = crear_conexion()
+        cursor = conexion.cursor()
+        
+        sql = 'DELETE FROM todo WHERE ID = ?'
+        
+        cursor.execute(sql, (id_tarea,))
+        
+        conexion.commit()
+        conexion.close()
+        
+        return True
+    except Exception as e:
+        print(e)
+        return False
