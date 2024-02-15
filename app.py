@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from db.crud_todo import crear_tarea, eliminar_tarea, obtener_tareas
+from db.crud_todo import crear_tarea, eliminar_tarea, finalizar_tarea, obtener_tareas
 
 app = Flask(__name__)
 
@@ -37,3 +37,13 @@ def eliminar(id):
         return {'mensaje': 'Tarea eliminada correctamente'}
     else:
         return {'mensaje': 'Error al eliminar la tarea'}
+
+
+@app.route('/tareas/<id>', methods=['PUT'])
+def modificar(id):
+    resultado = finalizar_tarea(id)
+    
+    if resultado:
+        return {'mensaje': 'Tarea finalizada correctamente'}
+    else:
+        return {'mensaje': 'Error al finalizar la tarea'}
