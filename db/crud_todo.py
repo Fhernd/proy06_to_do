@@ -84,3 +84,28 @@ def eliminar_tarea(id_tarea):
     except Exception as e:
         print(e)
         return False
+
+
+def finalizar_tarea(id_tarea):
+    """
+    Cambia el estado de una tarea en la base de datos
+
+    - id_tarea: int -- ID de la tarea a cambiar el estado
+    
+    Returns: bool -- True si el estado de la tarea fue cambiado, False en caso contrario
+    """
+    try:
+        conexion = crear_conexion()
+        cursor = conexion.cursor()
+        
+        sql = 'UPDATE todo SET TareaTerminada = 1 WHERE ID = ?'
+        
+        cursor.execute(sql, (id_tarea,))
+        
+        conexion.commit()
+        conexion.close()
+        
+        return True
+    except Exception as e:
+        print(e)
+        return False
