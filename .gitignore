@@ -102,8 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
-.venv
+.envgit rm --cached db/todos.db
 env/
 venv/
 ENV/
