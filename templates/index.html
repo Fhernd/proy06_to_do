@@ -110,12 +110,15 @@
                 contadorTareas.textContent = data.length;
                 data.forEach(tarea => {
                     const nuevaTareaItem = document.createElement('li');
+
+                    const btnFinalizar = `<button class="btn btn-success btn-sm" ${tarea.TareaFinalizada == 1 ? 'disabled' : ''}>${tarea.TareaFinalizada == 1 ? 'Finalizada' : 'Finalizar'}</button>`;
+
                     nuevaTareaItem.className = 'list-group-item';
                     nuevaTareaItem.innerHTML = `
                         <div class="d-flex justify-content-between">
                             <span>${tarea.Titulo}</span>
                             <div>
-                                <button class="btn btn-success btn-sm">Finalizar</button>
+                                ${btnFinalizar}
                                 <button class="btn btn-danger btn-sm">Eliminar</button>
                             </div>
                         </div>
