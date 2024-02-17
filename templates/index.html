@@ -40,7 +40,7 @@
                 <button class="btn btn-primary">Todos</button>
                 <button class="btn btn-info">Pendientes</button>
                 <button class="btn btn-secondary">Finalizadas</button>
-                <button class="btn btn-danger">Eliminar Tareas Finalizadas</button>
+                <button class="btn btn-danger" id="btnEliminarTareasFinalizadas">Eliminar Tareas Finalizadas</button>
             </div>
         </div>
 
@@ -108,6 +108,8 @@
 
                 guardarTarea(tarea);
             });
+
+            document.querySelector('#btnEliminarTareasFinalizadas').addEventListener('click', eliminarTareasFinalizadas);
         }
 
         function cargarTareas() {
@@ -182,6 +184,14 @@
             }).then(response => response.json())
             .then(data => console.log(data))
             .catch(error => console.log(error));
+        }
+
+        function eliminarTareasFinalizadas(event) {
+            const listaTareas = document.querySelector('#taskList');
+            const tareasFinalizadas = listaTareas.querySelectorAll('li .btn-success[disabled]');
+            tareasFinalizadas.forEach(tarea => {
+                tarea.parentElement.parentElement.parentElement.remove();
+            });
         }
     </script>
 </body>
