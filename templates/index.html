@@ -122,6 +122,8 @@
                 contadorTareas.textContent = data.length;
                 data.forEach(tarea => {
                     const nuevaTareaItem = document.createElement('li');
+                    nuevaTareaItem.id = tarea.ID;
+
                     const btnFinalizar = `<button class="btn btn-success btn-sm" ${tarea.TareaTerminada == 1 ? 'disabled' : ''}>${tarea.TareaTerminada == 1 ? 'Finalizada' : 'Finalizar'}</button>`;
 
                     nuevaTareaItem.className = 'list-group-item';
@@ -189,9 +191,15 @@
         function eliminarTareasFinalizadas(event) {
             const listaTareas = document.querySelector('#taskList');
             const tareasFinalizadas = listaTareas.querySelectorAll('li .btn-success[disabled]');
+            
+            const tareasIds = [];
+            
             tareasFinalizadas.forEach(tarea => {
+                tareasIds.push(tarea.parentElement.parentElement.id);
                 tarea.parentElement.parentElement.parentElement.remove();
             });
+
+            console.log(tareasIds);
         }
     </script>
 </body>

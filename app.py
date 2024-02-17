@@ -50,7 +50,7 @@ def modificar(id):
 
 
 @app.route('/tareas/todas', methods=['DELETE'])
-def eliminar(id):
+def eliminar_finalizadas():
     tareas_ids = request.json
     tareas_ids = tareas_ids['tareasIds']
     
