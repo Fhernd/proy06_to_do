@@ -47,3 +47,17 @@ def modificar(id):
         return {'mensaje': 'Tarea finalizada correctamente'}
     else:
         return {'mensaje': 'Error al finalizar la tarea'}
+
+
+@app.route('/tareas/todas', methods=['DELETE'])
+def eliminar(id):
+    tareas_ids = request.json
+    tareas_ids = tareas_ids['tareasIds']
+    
+    for id in tareas_ids:
+        resultado = eliminar_tarea(id)
+    
+    if resultado:
+        return {'mensaje': 'Tareas eliminadas correctamente'}
+    else:
+        return {'mensaje': 'Error al eliminar las tareas'}
