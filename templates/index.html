@@ -92,6 +92,17 @@
                 listaTareas.appendChild(nuevaTareaItem);
                 contadorTareas.textContent = parseInt(taskCount.textContent) + 1;
                 document.querySelector('#tituloTarea').value = '';
+
+                nuevaTareaItem.querySelector('.btn-success').addEventListener('click', () => {
+                    nuevaTareaItem.querySelector('.btn-success').textContent = 'Finalizada';
+                    nuevaTareaItem.querySelector('.btn-success').disabled = true;
+                });
+
+                const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
+                botonEliminar.addEventListener('click', () => {
+                    nuevaTareaItem.remove();
+                    eliminarTareaPorId(tarea.ID);
+                });
                 
                 const tarea = new ToDo(tituloTarea, false);
 
@@ -100,7 +111,6 @@
         }
 
         function cargarTareas() {
-            // Utilizar fetch para obtener las tareas desde la ruta /tareas:
             fetch('/tareas')
             .then(response => response.json())
             .then(data => {
@@ -147,7 +157,6 @@
             tareas.push(tarea);
             localStorage.setItem('tareas', JSON.stringify(tareas));
 
-            // Enviar los datos a la ruta /guardar utilizando fetch:
             fetch('/guardar', {
                 method: 'POST',
                 headers: {
