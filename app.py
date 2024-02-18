@@ -49,7 +49,7 @@ def modificar(id):
         return {'mensaje': 'Error al finalizar la tarea'}
 
 
-@app.route('/tareas/todas', methods=['DELETE'])
+@app.route('/tareas/eliminar-todas/finalizadas', methods=['DELETE'])
 def eliminar_finalizadas():
     tareas_ids = request.json
     tareas_ids = tareas_ids['tareasIds']

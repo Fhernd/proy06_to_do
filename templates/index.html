@@ -199,7 +199,21 @@
                 tarea.parentElement.parentElement.parentElement.remove();
             });
 
-            console.log(tareasIds);
+            solicitudEliminarTareasFinalizadas(tareasIds);
+        }
+
+        function solicitudEliminarTareasFinalizadas(tareasIds) {
+            fetch('/tareas/eliminar-todas/finalizadas', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    tareasIds
+                })
+            }).then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
         }
     </script>
 </body>
