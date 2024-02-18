@@ -37,7 +37,7 @@
         <!-- Fila para los botones de filtro y eliminar -->
         <div class="row mb-3">
             <div class="col">
-                <button class="btn btn-primary">Todos</button>
+                <button class="btn btn-primary">Todas</button>
                 <button class="btn btn-info">Pendientes</button>
                 <button class="btn btn-secondary">Finalizadas</button>
                 <button class="btn btn-danger" id="btnEliminarTareasFinalizadas">Eliminar Tareas Finalizadas</button>
@@ -80,6 +80,7 @@
                 const contadorTareas = document.querySelector('#taskCount');
                 const nuevaTareaItem = document.createElement('li');
                 nuevaTareaItem.className = 'list-group-item';
+                nuevaTareaItem.classList.add('pendiente');
                 nuevaTareaItem.innerHTML = `
                     <div class="d-flex justify-content-between">
                         <span>${tituloTarea}</span>
@@ -123,10 +124,16 @@
                 data.forEach(tarea => {
                     const nuevaTareaItem = document.createElement('li');
                     nuevaTareaItem.id = tarea.ID;
-
+                    
                     const btnFinalizar = `<button class="btn btn-success btn-sm" ${tarea.TareaTerminada == 1 ? 'disabled' : ''}>${tarea.TareaTerminada == 1 ? 'Finalizada' : 'Finalizar'}</button>`;
-
+                    
                     nuevaTareaItem.className = 'list-group-item';
+                    if (tarea.TareaTerminada) {
+                        nuevaTareaItem.classList.add('finalizada');
+                    } else {
+                        nuevaTareaItem.classList.add('pendiente');
+                    }
+
                     nuevaTareaItem.innerHTML = `
                         <div class="d-flex justify-content-between">
                             <span>${tarea.Titulo}</span>
@@ -146,6 +153,9 @@
                     botonFinalizar.addEventListener('click', () => {
                         botonFinalizar.textContent = 'Finalizado';
                         botonFinalizar.disabled = true;
+
+                        nuevaTareaItem.classList.remove('pendiente');
+                        nuevaTareaItem.classList.add('finalizada');
 
                         finalizarTarea(tarea.ID);
                     });
