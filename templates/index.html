@@ -54,7 +54,6 @@
         </div>
     </div>
 
-    <!-- Enlazando Bootstrap (JS) desde la carpeta static -->
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
     <script>
@@ -230,11 +229,9 @@
             var items = document.getElementById("taskList").getElementsByTagName("li");
         
             for (var i = 0; i < items.length; i++) {
-                // Si el estado es 'todas', mostrar todos los elementos
                 if (estado === 'todas') {
                     items[i].style.display = "";
                 } else {
-                    // Si el estado del elemento coincide con el filtro, mostrar, de lo contrario, ocultar
                     if (items[i].classList.contains(estado)) {
                         items[i].style.display = "";
                     } else {
