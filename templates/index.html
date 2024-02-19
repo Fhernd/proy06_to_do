@@ -109,6 +109,13 @@
                 guardarTarea(tarea);
             });
 
+            document.querySelector('#tituloTarea').addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    document.querySelector('#btnAgregar').click();
+                }
+            });
+
+
             document.querySelector('#btnEliminarTareasFinalizadas').addEventListener('click', eliminarTareasFinalizadas);
         }
 
