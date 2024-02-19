@@ -37,9 +37,9 @@
         <!-- Fila para los botones de filtro y eliminar -->
         <div class="row mb-3">
             <div class="col">
-                <button class="btn btn-primary">Todas</button>
-                <button class="btn btn-info">Pendientes</button>
-                <button class="btn btn-secondary">Finalizadas</button>
+                <button class="btn btn-primary" onclick="filtrar('todas')">Todas</button>
+                <button class="btn btn-info" onclick="filtrar('pendiente')">Pendientes</button>
+                <button class="btn btn-secondary" onclick="filtrar('finalizada')">Finalizadas</button>
                 <button class="btn btn-danger" id="btnEliminarTareasFinalizadas">Eliminar Tareas Finalizadas</button>
             </div>
         </div>
@@ -225,6 +225,25 @@
             .then(data => console.log(data))
             .catch(error => console.log(error));
         }
+        
+        function filtrar(estado) {
+            var items = document.getElementById("taskList").getElementsByTagName("li");
+        
+            for (var i = 0; i < items.length; i++) {
+                // Si el estado es 'todas', mostrar todos los elementos
+                if (estado === 'todas') {
+                    items[i].style.display = "";
+                } else {
+                    // Si el estado del elemento coincide con el filtro, mostrar, de lo contrario, ocultar
+                    if (items[i].classList.contains(estado)) {
+                        items[i].style.display = "";
+                    } else {
+                        items[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        
     </script>
 </body>
 
