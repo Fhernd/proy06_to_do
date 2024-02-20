@@ -152,8 +152,16 @@
                     `;
                     const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
                     botonEliminar.addEventListener('click', () => {
-                        nuevaTareaItem.remove();
-                        eliminarTareaPorId(tarea.ID);
+                        Swal.fire({
+                            title: "¿Está de querer eliminar esta tarea?",
+                            showCancelButton: true,
+                            confirmButtonText: "Sí",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                nuevaTareaItem.remove();
+                                eliminarTareaPorId(tarea.ID);
+                            }
+                        });
                     });
 
                     const botonFinalizar = nuevaTareaItem.querySelector('.btn-success');
