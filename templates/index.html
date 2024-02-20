@@ -101,8 +101,17 @@
 
                 const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
                 botonEliminar.addEventListener('click', () => {
-                    nuevaTareaItem.remove();
-                    eliminarTareaPorId(tarea.ID);
+                    Swal.fire({
+                        title: "¿Está de querer eliminar esta tarea?",
+                        showCancelButton: true,
+                        confirmButtonText: "Sí",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            nuevaTareaItem.remove();
+                            eliminarTareaPorId(tarea.ID);
+                            actualizarCantidadTareas();
+                        }
+                    });
                 });
                 
                 const tarea = new ToDo(tituloTarea, false);
@@ -160,6 +169,7 @@
                             if (result.isConfirmed) {
                                 nuevaTareaItem.remove();
                                 eliminarTareaPorId(tarea.ID);
+                                actualizarCantidadTareas();
                             }
                         });
                     });
@@ -257,6 +267,10 @@
             }
         }
         
+        function actualizarCantidadTareas() {
+            const contadorTareas = document.querySelector('#taskCount');
+            contadorTareas.textContent = document.getElementById("taskList").getElementsByTagName("li").length;
+        }
     </script>
 </body>
 
