@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo</title>
-    <!-- Enlazando Bootstrap (CSS) desde la carpeta static -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 </head>
 
@@ -24,7 +23,6 @@
             </div>
         </div>
 
-        <!-- Fila para agregar nueva tarea -->
         <div class="row mb-3">
             <div class="col-9">
                 <input type="text" class="form-control" id="tituloTarea" placeholder="Nueva tarea">
@@ -34,7 +32,6 @@
             </div>
         </div>
 
-        <!-- Fila para los botones de filtro y eliminar -->
         <div class="row mb-3">
             <div class="col">
                 <button class="btn btn-primary" onclick="filtrar('todas')">Todas</button>
@@ -44,11 +41,9 @@
             </div>
         </div>
 
-        <!-- Fila para listar tareas -->
         <div class="row">
             <div class="col">
                 <ul class="list-group" id="taskList">
-                    <!-- Las tareas irán aquí -->
                 </ul>
             </div>
         </div>
@@ -102,21 +97,7 @@
                 });
 
                 const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
-                botonEliminar.addEventListener('click', () => {
-                    Swal.fire({
-                        title: "¿Está de querer eliminar esta tarea?",
-                        showCancelButton: true,
-                        confirmButtonText: "Sí",
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            nuevaTareaItem.remove();
-                            eliminarTareaPorId(tarea.ID);
-                            actualizarCantidadTareas();
-
-                            existenTareasFinalizadas();
-                        }
-                    });
-                });
+                botonEliminar.addEventListener('click', eliminarTarea);
                 
                 const tarea = new ToDo(tituloTarea, false);
 
@@ -135,21 +116,38 @@
             document.querySelector('#btnEliminarTareasFinalizadas').addEventListener('click', eliminarTareasFinalizadas);
         }
 
+        function eliminarTarea(event) {
+            Swal.fire({
+                title: "¿Está de querer eliminar esta tarea?",
+                showCancelButton: true,
+                confirmButtonText: "Sí",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    nuevaTareaItem.remove();
+                    eliminarTareaPorId(tarea.ID);
+                    actualizarCantidadTareas();
+
+                    existenTareasFinalizadas();
+                }
+            });
+        }
+
         function cargarTareas() {
             fetch('/tareas')
             .then(response => response.json())
             .then(data => {
                 data = data.tareas;
+                
                 const listaTareas = document.querySelector('#taskList');
                 const contadorTareas = document.querySelector('#taskCount');
                 contadorTareas.textContent = data.length;
                 data.forEach(tarea => {
                     const nuevaTareaItem = document.createElement('li');
                     nuevaTareaItem.id = tarea.ID;
+                    nuevaTareaItem.className = 'list-group-item';
                     
                     const btnFinalizar = `<button class="btn btn-success btn-sm" ${tarea.TareaTerminada == 1 ? 'disabled' : ''}>${tarea.TareaTerminada == 1 ? 'Finalizada' : 'Finalizar'}</button>`;
                     
-                    nuevaTareaItem.className = 'list-group-item';
                     if (tarea.TareaTerminada) {
                         nuevaTareaItem.classList.add('finalizada');
                     } else {
@@ -166,21 +164,7 @@
                         </div>
                     `;
                     const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
-                    botonEliminar.addEventListener('click', () => {
-                        Swal.fire({
-                            title: "¿Está de querer eliminar esta tarea?",
-                            showCancelButton: true,
-                            confirmButtonText: "Sí",
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                nuevaTareaItem.remove();
-                                eliminarTareaPorId(tarea.ID);
-                                actualizarCantidadTareas();
-
-                                existenTareasFinalizadas();
-                            }
-                        });
-                    });
+                    botonEliminar.addEventListener('click', eliminarTarea);
 
                     const botonFinalizar = nuevaTareaItem.querySelector('.btn-success');
                     botonFinalizar.addEventListener('click', () => {
