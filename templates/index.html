@@ -97,7 +97,7 @@
                 });
 
                 const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
-                botonEliminar.addEventListener('click', eliminarTarea);
+                botonEliminar.addEventListener('click', (event) => eliminarTarea(event, tarea.ID, nuevaTareaItem));
                 
                 const tarea = new ToDo(tituloTarea, false);
 
@@ -116,7 +116,7 @@
             document.querySelector('#btnEliminarTareasFinalizadas').addEventListener('click', eliminarTareasFinalizadas);
         }
 
-        function eliminarTarea(event) {
+        function eliminarTarea(event, tareaId, nuevaTareaItem) {
             Swal.fire({
                 title: "¿Está de querer eliminar esta tarea?",
                 showCancelButton: true,
@@ -124,7 +124,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     nuevaTareaItem.remove();
-                    eliminarTareaPorId(tarea.ID);
+                    eliminarTareaPorId(tareaId);
                     actualizarCantidadTareas();
 
                     existenTareasFinalizadas();
@@ -164,7 +164,7 @@
                         </div>
                     `;
                     const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
-                    botonEliminar.addEventListener('click', eliminarTarea);
+                    botonEliminar.addEventListener('click', (event) => eliminarTarea(event, tarea.ID, nuevaTareaItem));
 
                     const botonFinalizar = nuevaTareaItem.querySelector('.btn-success');
                     botonFinalizar.addEventListener('click', () => {
