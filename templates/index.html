@@ -97,6 +97,8 @@
                 nuevaTareaItem.querySelector('.btn-success').addEventListener('click', () => {
                     nuevaTareaItem.querySelector('.btn-success').textContent = 'Finalizada';
                     nuevaTareaItem.querySelector('.btn-success').disabled = true;
+
+                    existenTareasFinalizadas();
                 });
 
                 const botonEliminar = nuevaTareaItem.querySelector('.btn-danger');
@@ -245,6 +247,10 @@
             });
 
             solicitudEliminarTareasFinalizadas(tareasIds);
+
+            actualizarCantidadTareas();
+
+            existenTareasFinalizadas();
         }
 
         function solicitudEliminarTareasFinalizadas(tareasIds) {
