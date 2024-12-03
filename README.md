@@ -119,7 +119,9 @@ python app.py
 
 ## 4.2 Ejecución de la aplicación
 
-![Ejecución de la aplicación](docs/images/01-estructura de archivos y carpetas.png)
+![Ejecución de la aplicación](docs/images/02-ejecucion-aplicacion.png)
+
+## 4.3 
 
 ---
 
