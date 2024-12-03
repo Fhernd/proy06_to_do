@@ -115,7 +115,7 @@ python app.py
 
 ## 4.1 Estructura de archivos y carpetas
 
-![Estructura de archivos y carpetas](docs/images/01-estructura de archivos y carpetas.png)
+![Estructura de archivos y carpetas](docs/images/01-estructura-archivos-carpetas.png)
 
 ## 4.2 Ejecución de la aplicación
 
