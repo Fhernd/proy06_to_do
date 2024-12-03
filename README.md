@@ -113,7 +113,13 @@ python app.py
 
 # 4. Capturas de Pantalla
 
-Esta sección quedará pendiente. Aquí se incluirán capturas de la interfaz de usuario y sus características.
+## 4.1 Estructura de archivos y carpetas
+
+![Estructura de archivos y carpetas](docs/images/01-estructura de archivos y carpetas.png)
+
+## 4.2 Ejecución de la aplicación
+
+![Ejecución de la aplicación](docs/images/01-estructura de archivos y carpetas.png)
 
 ---
 
