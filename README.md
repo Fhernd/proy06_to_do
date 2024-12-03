@@ -121,7 +121,9 @@ python app.py
 
 ![Ejecución de la aplicación](docs/images/02-ejecucion-aplicacion.png)
 
-## 4.3 
+## 4.3 Aplicación en el navegador
+
+![Aplicación en el navegador](docs/images/03-aplicacion-en-ejecucion.png)
 
 ---
 
