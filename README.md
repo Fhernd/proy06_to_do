@@ -104,7 +104,7 @@ pip install -r requirements.txt
 2. Ejecuta el archivo principal de la aplicación:
 
 ```bash
-python app.py
+flask run
 ```
 
 3. Abre tu navegador web y accede a [http://127.0.0.1:5000](http://127.0.0.1:5000).
